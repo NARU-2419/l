@@ -1,0 +1,20 @@
+version: 1
+
+jobs:
+  run_legend_continuously:
+    runs_on: ubuntu-latest  # You can change this to your preferred environment if needed
+    
+    steps:
+      - name: Setup Python Environment
+        run: |
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt  # Install dependencies if any
+
+      - name: Run LEGEND.py and Keep Alive
+        run: |
+          while true; do
+            python legend.py  # Run the Python script
+            echo "Script has finished. Restarting in 30 minutes..."
+            sleep 1800  # Wait for 30 minutes (1800 seconds)
+          done
